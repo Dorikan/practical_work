@@ -30,7 +30,7 @@ class main:
         for i in dict(d):
             if d[i] == 1:
                 d.pop(i)
-            elif d.pos(i) in self.functors_pos:
+            elif self.pos(i) in self.functors_pos:
                 d.pop(i)
                 
     def mem_clean(self):
