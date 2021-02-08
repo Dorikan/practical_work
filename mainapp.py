@@ -68,6 +68,7 @@ class main:
         self.endDict = dict(zip(self.first_list, self.second_list))
         self.dict_enumerator(self.endDict)
         self.endDict = {k: v for k, v in sorted(self.endDict.items(), key=lambda item: item[1], reverse=True)}
+        self.mem_clean()
 
 
 testMain = main()
