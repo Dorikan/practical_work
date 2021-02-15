@@ -1,6 +1,6 @@
 import re
 import codecs
-import pymorphy2  # $ pip install pymorphy2
+import pymorphy2 # $ pip install pymorphy2
 
 
 class main:
@@ -69,7 +69,3 @@ class main:
         self.dict_enumerator(self.endDict)
         self.endDict = {k: v for k, v in sorted(self.endDict.items(), key=lambda item: item[1], reverse=True)}
         self.mem_clean()
-
-
-testMain = main()
-testMain.start()
