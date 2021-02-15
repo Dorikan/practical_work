@@ -1,24 +1,38 @@
 import tkinter as tk
+from tkinter import filedialog as fd
+import analyzer
 
 class gui(tk.Frame):
     def __init__(self, master = None):
         super().__init__(master)
+
+        ###args
+        self.file_name = None
+        self.input_file = None
+        ###args
+
         self.master = master
         self.pack()
         self.create_widgets()
 
     def create_widgets(self):
-        self.hi_there = tk.Button(self)
-        self.hi_there["text"] = "Hello World\n(click me)"
-        self.hi_there["command"] = self.say_hi
-        self.hi_there.pack(side="top")
+        self.input_file = tk.Button(self)
+        self.input_file["text"] = "Открыть файл для анализа"
+        self.input_file["command"] = self.input_file_button_command
+        self.input_file.pack(side="top")
 
-        self.quit = tk.Button(self, text="QUIT", fg="red",
-                              command=self.master.destroy)
-        self.quit.pack(side="bottom")
+    def input_file_button_command(self):
+        self.file_name = fd.askopenfilename(
+            filetypes=(("TXT files", "*.txt"),
+                       ("HTML files", "*.html;*.htm"),
+                       ("All files", "*.*")))
+        x = self.analysis()
+        print(x)
 
-    def say_hi(self):
-        print("hi there, everyone!")
+    def analysis(self):
+        temp = analyzer.analyzer(self.file_name)
+        temp.start()
+        return temp.gui_otput()
 
 root = tk.Tk()
 app = gui(master=root)

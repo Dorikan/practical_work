@@ -3,11 +3,11 @@ import codecs
 import pymorphy2 # $ pip install pymorphy2
 
 
-class main:
+class analyzer:
 
-    def __init__(self):
+    def __init__(self, file=None):
         self.pattern = re.compile('[A-zА-яё]*')
-        self.a = codecs.open('input.txt', 'r', 'utf-8').read().split(' ')
+        self.a = open(file, 'r').read().split(' ')
         self.first_list = []
         self.second_list = []
         self.functors_pos = {'INTJ', 'PRCL', 'CONJ', 'PREP'}
@@ -18,8 +18,8 @@ class main:
         self.make_x_list()
         self.check_words()
         self.create_dict()
-        self.console_output()
-        self.file_output()
+
+
 
     # noinspection SpellCheckingInspection
     @staticmethod
@@ -63,6 +63,12 @@ class main:
         for i in self.endDict:
             z = '{}\n{}: {}'.format(z, i, self.endDict.get(i))
         codecs.open('output.txt', 'w', 'utf-8').write(str(z))
+
+    def gui_otput(self):
+        z = ''
+        for i in self.endDict:
+            z = '{}\n{}: {}'.format(z, i, self.endDict.get(i))
+        return z
 
     def create_dict(self):
         self.endDict = dict(zip(self.first_list, self.second_list))
