@@ -5,9 +5,12 @@ import pymorphy2 # $ pip install pymorphy2
 
 class analyzer:
 
-    def __init__(self, file=None):
+    def __init__(self, file=None, text=None):
         self.pattern = re.compile('[A-zА-яё]*')
-        self.a = open(file, 'r').read().split(' ')
+        if file is not None:
+            self.a = open(file, 'r').read().split(' ')
+        elif text is not None:
+            self.a = text.split(" ")
         self.first_list = []
         self.second_list = []
         self.functors_pos = {'INTJ', 'PRCL', 'CONJ', 'PREP'}
